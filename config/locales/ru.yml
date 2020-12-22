@@ -1,0 +1,11 @@
+ru:
+  activerecord:
+    errors:
+      models:
+        article:
+          attributes:  
+            title: 
+              blank: "Заголовок не может быть пустым"
+              too_long: "Заголовок слишком длинный"
+            text:
+              blank: "Текст не может быть пустым"

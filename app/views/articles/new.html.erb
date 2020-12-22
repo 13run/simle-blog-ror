@@ -1,22 +1,22 @@
 <h1>New article</h1>
 
 <%if @article && @article.errors.any?%>
-    <%@article.errors.full_messages.each do |msg|%>
-        <ul><li><%=msg%></li></ul>
+    <%@article.errors.each do |attr, msg|%>
+        <div class="alert alert-danger" role="alert"><%=msg%></div>
     <%end%>
 <%end%>
 
-<%= form_for :article, url: articles_path do |f|%>
+<%= form_for :article, url: articles_path do%>
+    <div class="form-group">
+        <%= label(:article, :title, 'Заголовок')%><br>
+        <%= text_field(:article, :title, class: 'form-control') %>
+    </div>
+    <div class="form-group">
+        <%= label(:article, :text, 'Текст')%>
+        <%= text_area(:article, :text, class: 'form-control', row: '10')%>
+    </div>
     <p>
-        <%= f.label :title%>
-        <%= f.text_field :title%>
-    </p>
-    <p>
-        <%= f.label :text%>
-        <%= f.text_area :text%>
-    </p>
-    <p>
-        <%= f.submit %>
+        <%= submit_tag('Создать', class: "btn btn-success") %>
     </p>
 <%end%>
 
