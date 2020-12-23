@@ -1,4 +1,28 @@
 <h1><%=@article.title%></h1>
 <p><%=@article.text%></p>
+
 <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-success' %>
 <%= link_to 'Delete', @article, data:  { confirm: "Are you sure?" },  method: :delete, class: "btn btn-danger" %>
+
+<h2>Comments</h2>
+<div>
+	<% @article.comments.reverse.each do |comment| %>
+    
+    Comment: <%= comment.body%>, author: <%= comment.author%> | <%= comment.created_at %> 
+    <hr>
+  <% end %>
+</div>
+
+<%= form_for [@article, Comment.new] do %>
+  <div>
+      <%= label( :comment, :author)%>
+      <%= text_field( :comment, :author)%>
+  </div>
+  <div>
+      <%= label( :comment, :body)%>
+      <%= text_field( :comment, :body)%>
+  </div>
+  <p>
+      <%= submit_tag('Комментарий', class: "btn btn-success") %>
+  </p>
+<%end%>
