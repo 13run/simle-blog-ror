@@ -1,8 +1,8 @@
 <h1>New article</h1>
 
 <%if @article && @article.errors.any?%>
-    <%@article.errors.each do |attr, msg|%>
-        <div class="alert alert-danger" role="alert"><%=msg%></div>
+    <%@article.errors.messages.each do |msg|%>
+        <div class="alert alert-danger" role="alert"><%=msg.last.first%></div>
     <%end%>
 <%end%>
 
