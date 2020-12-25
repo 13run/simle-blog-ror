@@ -3,24 +3,25 @@
 
 <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-success' %>
 <%= link_to 'Delete', @article, data:  { confirm: "Are you sure?" },  method: :delete, class: "btn btn-danger" %>
+<hr>
 
-<h2>Comments</h2>
+<h3>Comments</h3>
 <div>
 	<% @article.comments.reverse.each do |comment| %>
     
-    Comment: <%= comment.body%>, author: <%= comment.author%> | <%= comment.created_at %> 
+    <%= comment.author.capitalize%>, sayed: '<%= comment.body.capitalize%>' | at: <%= comment.created_at %> 
     <hr>
   <% end %>
 </div>
 
-<%= form_for [@article, Comment.new] do %>
+<%= form_for( [@article, Comment.new] ) do %> <%# or @article.comments.build %>
   <div>
       <%= label( :comment, :author)%>
       <%= text_field( :comment, :author)%>
   </div>
   <div>
       <%= label( :comment, :body)%>
-      <%= text_field( :comment, :body)%>
+      <%= text_area( :comment, :body)%>
   </div>
   <p>
       <%= submit_tag('Комментарий', class: "btn btn-success") %>
