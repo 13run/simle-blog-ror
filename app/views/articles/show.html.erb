@@ -9,7 +9,7 @@
 <div>
 	<% @article.comments.reverse.each do |comment| %>
     
-    <%= comment.author.capitalize%>, sayed: '<%= comment.body.capitalize%>' | at: <%= comment.created_at %> 
+    <%= comment.author.capitalize%>, said: '<%= comment.body.capitalize%>' | at: <%= comment.created_at %> 
     <hr>
   <% end %>
 </div>
